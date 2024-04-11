@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Title -->
+    <title>Maximizing Quadruped Velocity by Minimizing Energy</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Maximizing Quadruped Velocity by Minimizing Energy">
+    <meta name="keywords" content="Reinforcement Learning, Legged Locomotion, Constrained Optimization">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- https://fontawesome.com/cheatsheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+    <style>
+        .header-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            padding-top: 0px;
+        }
+        .header-text {
+            text-align: center;
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MLNCESWHS"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9MLNCESWHS');
+    </script>
+
+</head>
+
+
+<body>
+    <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> -->
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #A31F34;">
+        <a class="navbar-brand" href="#">Maximizing Quadruped Velocity by Minimizing Energy</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggle">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Abstract">Abstract</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Paper">Paper</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Overview">Overview</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="container" style="padding-top: 80px; font-size: 20px">
+        
+        <div align="center">
+            <h2 class="text-center" align="center">
+                Maximizing Quadruped Velocity by Minimizing Energy
+            </h2>
+            <h6>
+                <a href="https://srinathm1359.github.io/">Srinath Mahankali*</a>, 
+                <a href="https://dblp.org/pid/258/6861.html">Chi-Chang Lee*</a>,
+                <a href="https://gmargo11.github.io/">Gabriel B. Margolis</a>, 
+                <a href="https://williamd4112.github.io/">Zhang-Wei Hong</a>, 
+                <a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a> 
+            </h6>
+            <p style="color: green;"><small>International Conference on
+                Robotics and Automation (ICRA), 2024</small></p>
+            <div class="logo-container">
+                <div>
+                <object hspace="50">
+                    <a href="https://www.csail.mit.edu/" target="_blank">
+                        <img src="rsc/CSAIL_Primary_Regular_RGB.png" alt="MIT" width="100">
+                    </a>
+                </object>
+                <object hspace="50">
+                    <a href="https://people.csail.mit.edu/pulkitag/" target="_blank">
+                        <img src="rsc/IAI_Logo.jpg" alt="Improbable AI" width="100">
+                    </a>
+                </object>
+                </div>
+            </div>
+        </div>
+        
+    </div><br>
+
+    <center>
+        <button class="btn btn-blue" 
+                onmouseover="this.style.backgroundColor='#0080ff'" 
+                onmouseout="this.style.backgroundColor='#0066cc'" 
+                style="display: inline-block; padding: 8px 16px 8px 42px; font-size: 16px; color: white; background-color: #0066cc; background-image: url(rsc/icons8-paperwork-32.png); background-repeat: no-repeat; background-position: left center; border: none; border-radius: 4px;" 
+                onclick="window.location.href='https://www.dropbox.com/scl/fi/jmw71dei5x3aniavqxn38/Maximizing_Quadruped_Velocity_by_Minimizing_Energy.pdf?rlkey=s0hxmm68b6vnsdhqdu9dsnaya&dl=0';">
+                Paper</button>
+        <!-- <button class="btn" onmouseover="this.style.backgroundColor='#444'" onmouseout="this.style.backgroundColor='#333'" style="display: inline-block; padding: 8px 16px 8px 36px; font-size: 16px; color: white; background-color: #333; background-image: url(https://github.com/favicon.ico); background-repeat: no-repeat; background-position: left center; border: none; border-radius: 4px;" onclick="window.location.href='https://github.com/Improbable-AI/dribblebot';">GitHub</button> -->
+    </center><br>
+
+    <!-- straight -->
+    <!-- <div class="container" style="padding-top: 10px; font-size: 20px">
+        <div align="center">
+            <div class="center" style="position: relative;">
+                <video
+                  width="100%"
+                  style="max-width: 640px; display: block;"
+                  id="video"
+                  controls
+                >
+                  <source src="rsc/ASMP_Spotlight_Narrated.mp4" type="video/mp4" />
+                  <track src="rsc/ASMP_Spotlight_Narrated.vtt" kind="subtitles" srclang="en" label="English" default>
+                </video>
+                <div
+                  id="playButton"
+                  style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer; background-color: #000000; border: none; color: #ffffff; padding: 10px 20px; font-size: 1.5em;"
+                  onclick="playVideo()"
+                >
+                  ▶
+                </div>
+              </div>
+
+              <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                  const video = document.getElementById('video');
+                  const track = document.getElementById('track');
+                  track.track.mode = 'showing'; // this will show the subtitles by default
+                  video.play(); // start playing the video
+                });
+              </script>
+              
+              <!-- <script>
+                function playVideo() {
+                  const video = document.getElementById('video');
+                  const playButton = document.getElementById('playButton');
+                  const track = document.getElementById('track');
+                  track.track.mode = 'showing'; // this will show the subtitles by default
+                  video.play();
+                  playButton.style.display = 'none';
+                }
+              
+                document.getElementById('video').addEventListener('ended', function () {
+                  const playButton = document.getElementById('playButton');
+                  playButton.style.display = 'block';
+                });
+              </script> -->
+            </div>
+        </div>
+    </div><br>
+
+    <!-- Abstract -->
+    <div class="container">
+        <h4 id="Abstract" style="padding-top: 70px; margin-top: -80px; ">Abstract</h4>
+        <hr>
+        <div style="text-align: justify">
+            Reinforcement Learning (RL) has been a powerful tool for training robots to acquire agile locomotion skills. 
+            To learn locomotion, it is commonly necessary to introduce additional reward-shaping terms, such as an energy minimization term, to guide an algorithm like Proximal Policy Optimization (PPO) to good performance.
+            Prior works rely on hyper-parameter tuning on the weight of the reward shaping terms to obtain satisfactory task performance.
+            To save the efforts of tuning these weights, we adopt the Extrinsic-Intrinsic Policy Optimization (EIPO) framework. 
+            The key idea of EIPO is to establish a constrained optimization framework for the primary objective of enhancing task performance and the secondary objective of minimizing energy consumption. 
+            It seeks a policy that minimizes the energy consumption objective within the optimal policy space for task performance.
+            This guarantees that the learned policy excels in task performance while conserving energy, all without requiring manual weight adjustments for both objectives.
+            Our experiments evaluate EIPO on various quadruped locomotion tasks, revealing that policies trained with EIPO consistently achieve higher task performance than PPO comparisons while maintaining comparable energy consumption levels. 
+            Furthermore, EIPO exhibits superior task performance in real-world evaluations compared to PPO.
+        </div>
+    </div><br><br>
+
+    <!-- Paper -->
+    <div class="container">
+        <h4 id="Paper" style="padding-top: 70px; margin-top: -80px;">Paper</h4>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <b>Maximizing Quadruped Velocity by Minimizing Energy</b><br>
+                <a href="https://srinathm1359.github.io/">Srinath Mahankali*</a>, 
+                <a href="https://dblp.org/pid/258/6861.html">Chi-Chang Lee*</a>,
+                <a href="https://gmargo11.github.io/">Gabriel B. Margolis</a>, 
+                <a href="https://williamd4112.github.io/">Zhang-Wei Hong</a>, 
+                <a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a> 
+                <p><em>International Conference on
+                    Robotics and Automation (ICRA), 2024 </em></p>
+                <a href="https://www.dropbox.com/scl/fi/jmw71dei5x3aniavqxn38/Maximizing_Quadruped_Velocity_by_Minimizing_Energy.pdf?rlkey=s0hxmm68b6vnsdhqdu9dsnaya&dl=0" target="_blank">paper</a> /
+                <a href="https://srinathm1359.github.io/eipo-locomotion" target="_blank">project page</a>
+                <!-- <a href="" data-toggle="modal" data-target="#corl23-bibtex">
+                    bibtex
+                </a> -->
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="corl23-bibtex" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="rss-bibtex-title">bibtex</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+    <pre>
+    @article{mahankali2024maximizing,
+        title={Maximizing Quadruped Velocity by Minimizing Energy},
+        author={Mahankali, Srinath and Lee, Chi-Chang and Margolis, Gabriel B. and Hong, Zhang-Wei and Agrawal, Pulkit},
+        journal={International Conference on
+            Robotics and Automation},
+        year={2024}
+    }
+    </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <!-- <div class="container">
+        
+        <h4 id="highlights" style="padding-top: 30px; margin-top: -40px;">Real World Highlights</h4>
+        <hr>
+        
+            <div align="center">
+                <br>
+                    <div class="center">
+                        <video width="100%" padding-bottom="56.25%" style="max-width: 640px;" controls>
+                            <source src="rsc/highlights.m4v" type="video/mp4">
+                      </video>
+                    </div>
+            </div>
+    </div><br><br> -->
+
+    <div class="container">
+        
+        <h4 id="Overview" style="padding-top: 70px; margin-top: -80px;">Overview</h4>
+        <hr>
+        <br>
+        
+            <div align="center">
+                <!-- <h5 id="sys-arch" style="padding-top: 30px; margin-top: -40px;"> -->
+                    <b>We train a vision module to perceive terrain properties like friction coefficient and roughness parameter.</b>
+                <!-- </h5> -->
+                <br>
+                <div class="center">
+                    <video
+                      width="100%"
+                      style="max-width: 640px;"
+                      controls="true"
+                      autoplay
+                      muted
+                      loop
+                      onplaying="this.controls=false"
+                      id="video"
+                    >
+                      <source src="rsc/im2im.mov" type="video/mp4" />
+                    </video>
+                  </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                      const video = document.getElementById('video');
+                      const observer = new IntersectionObserver(
+                        (entries) => {
+                          entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                              video.play();
+                            } else {
+                              video.pause();
+                            }
+                          });
+                        },
+                        {
+                          threshold: 0.5, // 50% of the video must be visible for it to play
+                        }
+                      );
+                      observer.observe(video);
+                    });
+                  </script>
+            </div>
+    <br>
+    <hr>
+        <br>
+        <div align="center">
+            <!-- <h5 id="sys-arch" style="padding-top: 30px; margin-top: -40px;"> -->
+              <b>The key is to optimize the robot's gait to accurately sense the terrain, resulting in emergent behavior like rubbing the foot to sense friction.</b>
+            <!-- </h5> -->
+            <br>
+            <br>
+            <div class="center" style="display: flex; justify-content: center; gap: 5px;">
+              <div>
+                <div class="center">
+                    <video
+                      width="70%"
+                      style="max-width: 640px;"
+                      controls="true"
+                      autoplay
+                      muted
+                      loop
+                      onplaying="this.controls=false"
+                      id="video"
+                    >
+                      <source src="rsc/asmp_miniclip_swiping.mov" type="video/mp4" />
+                    </video>
+                  </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                      const video = document.getElementById('video');
+                      const observer = new IntersectionObserver(
+                        (entries) => {
+                          entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                              video.play();
+                            } else {
+                              video.pause();
+                            }
+                          });
+                        },
+                        {
+                          threshold: 0.5, // 50% of the video must be visible for it to play
+                        }
+                      );
+                      observer.observe(video);
+                    });
+                  </script>
+                <p style="text-align: center; margin-top: 5px;">Emergent foot swiping</p>
+              </div>
+              <div>
+                <div class="center">
+                    <video
+                      width="70%"
+                      style="max-width: 640px;"
+                      controls="true"
+                      autoplay
+                      muted
+                      loop
+                      onplaying="this.controls=false"
+                      id="video"
+                    >
+                      <source src="rsc/asmp_miniclip_rubbing.mov" type="video/mp4" />
+                    </video>
+                  </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                      const video = document.getElementById('video');
+                      const observer = new IntersectionObserver(
+                        (entries) => {
+                          entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                              video.play();
+                            } else {
+                              video.pause();
+                            }
+                          });
+                        },
+                        {
+                          threshold: 0.5, // 50% of the video must be visible for it to play
+                        }
+                      );
+                      observer.observe(video);
+                    });
+                  </script>
+                <p style="text-align: center; margin-top: 5px;">Emergent foot rubbing</p>
+              </div>
+              <!-- <div>
+                <img src="rsc/roughness_sensing_gait.gif" style="width: 70%;" alt="Roughness Sensing Gait" />
+                <p style="text-align: center; margin-top: 5px;"><b>Roughness sensing gait</b></p>
+              </div> -->
+            </div>
+          </div>          
+    </div>
+    <hr>
+        <br>
+            <div align="center">
+                <b>This informative proprioceptive data from real-world traversals provides training data for a vision module.</b>
+                <br>
+                <br>
+                    <div class="center">
+                        <img src="rsc/asmp_system_diagram.jpg" alt="System Architecture" width="60%" style="max-width: 400px" />
+                    </div>
+            </div>
+    <hr>
+        <br>
+            <div align="center">
+                <b>The resulting vision module can be evaluated on drone images to predict a map of the terrain properties.</b>
+                <br>
+                <br>
+                <div class="center">
+                    <video
+                      width="100%"
+                      style="max-width: 640px;"
+                      controls="true"
+                      autoplay
+                      muted
+                      loop
+                      onplaying="this.controls=false"
+                      id="video"
+                    >
+                      <source src="rsc/drone_image_inference.mov" type="video/mp4" />
+                    </video>
+                  </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                      const video = document.getElementById('video');
+                      const observer = new IntersectionObserver(
+                        (entries) => {
+                          entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                              video.play();
+                            } else {
+                              video.pause();
+                            }
+                          });
+                        },
+                        {
+                          threshold: 0.5, // 50% of the video must be visible for it to play
+                        }
+                      );
+                      observer.observe(video);
+                    });
+                  </script>
+            </div>
+            <hr>
+                <br>
+                    <div align="center">
+                        <b>This defines a digital twin of the terrain to inform locomotion in unseen modes like payload dragging without collecting additional real-world data.</b>
+                        <br>
+                        <br>
+                            <div class="center">
+                                <video
+                                  width="100%"
+                                  style="max-width: 640px;"
+                                  controls="true"
+                                  autoplay
+                                  muted
+                                  loop
+                                  onplaying="this.controls=false"
+                                  id="video"
+                                >
+                                  <source src="rsc/path_plan_asmp.mov" type="video/mp4" />
+                                </video>
+                              </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                  const video = document.getElementById('video');
+                                  const observer = new IntersectionObserver(
+                                    (entries) => {
+                                      entries.forEach((entry) => {
+                                        if (entry.isIntersecting) {
+                                          video.play();
+                                        } else {
+                                          video.pause();
+                                        }
+                                      });
+                                    },
+                                    {
+                                      threshold: 0.5, // 50% of the video must be visible for it to play
+                                    }
+                                  );
+                                  observer.observe(video);
+                                });
+                              </script>
+                    </div>
+    </div>
+    
+    
+    <br><br>
+
+    
+
+    
+
+    <div class="container">
+        
+        <!-- <h4 id="sim-training" style="padding-top: 30px; margin-top: -40px;">Task Specification</h4> -->
+        <hr>
+        
+
+    <br><br>
+
+    <center>
+    <p>Website made using <a href="https://taochenshh.github.io/projects/visual-dexterity">this template</a>.</p>
+    </center>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
