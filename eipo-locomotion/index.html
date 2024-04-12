@@ -248,18 +248,54 @@
 
     <div class="container">
         
-        <h4 id="Overview" style="padding-top: 70px; margin-top: -80px;">Overview</h4>
-        <hr>
+        <h2 id="Overview" style="padding-top: 70px; margin-top: -80px;">Overview</h4>
         <br>
-        
-            <div align="center">
-                <!-- <h5 id="sys-arch" style="padding-top: 30px; margin-top: -40px;"> -->
-                    <!-- <b>We train a vision module to perceive terrain properties like friction coefficient and roughness parameter.</b> -->
-                <!-- </h5> -->
-                <br>
-                <div class="center">
+        <br>
+        <h4 id="Omni" style="padding-top: 70px; margin-top: -80px;">Omni-directional Policy with EIPO and Curriculum Learning</h4>
+            <hr>
+        <br>
+        <div class="center" style="display: flex; justify-content: center; gap: 5px;">
+            <div>
+              <div class="center" style="display: flex; justify-content: center; gap: 5px;">
+                  <video
+                    width="60%"
+                    style="max-width: 640px;"
+                    controls="true"
+                    autoplay
+                    muted
+                    loop
+                    onplaying="this.controls=false"
+                    id="video"
+                  >
+                    <source src="rsc/running1.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                    const video = document.getElementById('video');
+                    const observer = new IntersectionObserver(
+                      (entries) => {
+                        entries.forEach((entry) => {
+                          if (entry.isIntersecting) {
+                            video.play();
+                          } else {
+                            video.pause();
+                          }
+                        });
+                      },
+                      {
+                        threshold: 0.5, // 50% of the video must be visible for it to play
+                      }
+                    );
+                    observer.observe(video);
+                  });
+                </script>
+              <p style="text-align: center; margin-top: 5px;">Running at high speeds.</p>
+            </div>
+            <div>
+                <div class="center" style="display: flex; justify-content: center; gap: 5px;">
                     <video
-                      width="100%"
+                      width="60%"
                       style="max-width: 640px;"
                       controls="true"
                       autoplay
@@ -268,7 +304,7 @@
                       onplaying="this.controls=false"
                       id="video"
                     >
-                      <source src="rsc/im2im.mov" type="video/mp4" />
+                      <source src="rsc/snow_climb.mp4" type="video/mp4" />
                     </video>
                   </div>
                 <script>
@@ -291,10 +327,49 @@
                       observer.observe(video);
                     });
                   </script>
-            </div>
+                <p style="text-align: center; margin-top: 5px;">Climbing a snowy hill.</p>
+              </div>
+              <div>
+                <div class="center" style="display: flex; justify-content: center; gap: 5px;">
+                    <video
+                      width="60%"
+                      style="max-width: 640px;"
+                      controls="true"
+                      autoplay
+                      muted
+                      loop
+                      onplaying="this.controls=false"
+                      id="video"
+                    >
+                      <source src="rsc/eipo_spinning_front_view_11_16.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                      const video = document.getElementById('video');
+                      const observer = new IntersectionObserver(
+                        (entries) => {
+                          entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                              video.play();
+                            } else {
+                              video.pause();
+                            }
+                          });
+                        },
+                        {
+                          threshold: 0.5, // 50% of the video must be visible for it to play
+                        }
+                      );
+                      observer.observe(video);
+                    });
+                  </script>
+                <p style="text-align: center; margin-top: 5px;">Spinning at high speeds.</p>
+              </div>
+        </div>
     <br>
+    <h4 id="Velocity Maximization" style="padding-top: 70px; margin-top: -80px;">Velocity Maximization Task</h4>
     <hr>
-        <br>
         <div align="center">
             <!-- <h5 id="sys-arch" style="padding-top: 30px; margin-top: -40px;"> -->
               <!-- <b>The key is to optimize the robot's gait to accurately sense the terrain, resulting in emergent behavior like rubbing the foot to sense friction.</b> -->
@@ -314,8 +389,9 @@
                       onplaying="this.controls=false"
                       id="video"
                     >
-                      <source src="rsc/asmp_miniclip_swiping.mov" type="video/mp4" />
+                      <source src="rsc/max_velocity_1.mov" type="video/mp4" />
                     </video>
+                    <p style="text-align: center; margin-top: 5px;">PPO, PPO with energy, and EIPO in simulation.</p>
                   </div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -351,8 +427,9 @@
                       onplaying="this.controls=false"
                       id="video"
                     >
-                      <source src="rsc/asmp_miniclip_rubbing.mov" type="video/mp4" />
+                      <source src="rsc/max_velocity_2.mov" type="video/mp4" />
                     </video>
+                    <p style="text-align: center; margin-top: 5px;">Deploying PPO and EIPO in the real world.</p>
                   </div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -382,99 +459,6 @@
               </div> -->
             </div>
           </div>          
-    </div>
-    <hr>
-        <br>
-            <div align="center">
-                <!-- <b>This informative proprioceptive data from real-world traversals provides training data for a vision module.</b> -->
-                <br>
-                <br>
-                    <!-- <div class="center">
-                        <img src="rsc/asmp_system_diagram.jpg" alt="System Architecture" width="60%" style="max-width: 400px" />
-                    </div> -->
-            </div>
-    <hr>
-        <br>
-            <div align="center">
-                <!-- <b>The resulting vision module can be evaluated on drone images to predict a map of the terrain properties.</b> -->
-                <br>
-                <br>
-                <div class="center">
-                    <video
-                      width="100%"
-                      style="max-width: 640px;"
-                      controls="true"
-                      autoplay
-                      muted
-                      loop
-                      onplaying="this.controls=false"
-                      id="video"
-                    >
-                      <source src="rsc/drone_image_inference.mov" type="video/mp4" />
-                    </video>
-                  </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                      const video = document.getElementById('video');
-                      const observer = new IntersectionObserver(
-                        (entries) => {
-                          entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                              video.play();
-                            } else {
-                              video.pause();
-                            }
-                          });
-                        },
-                        {
-                          threshold: 0.5, // 50% of the video must be visible for it to play
-                        }
-                      );
-                      observer.observe(video);
-                    });
-                  </script>
-            </div>
-            <hr>
-                <br>
-                    <div align="center">
-                        <!-- <b>This defines a digital twin of the terrain to inform locomotion in unseen modes like payload dragging without collecting additional real-world data.</b> -->
-                        <br>
-                        <br>
-                            <div class="center">
-                                <video
-                                  width="100%"
-                                  style="max-width: 640px;"
-                                  controls="true"
-                                  autoplay
-                                  muted
-                                  loop
-                                  onplaying="this.controls=false"
-                                  id="video"
-                                >
-                                  <source src="rsc/path_plan_asmp.mov" type="video/mp4" />
-                                </video>
-                              </div>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function () {
-                                  const video = document.getElementById('video');
-                                  const observer = new IntersectionObserver(
-                                    (entries) => {
-                                      entries.forEach((entry) => {
-                                        if (entry.isIntersecting) {
-                                          video.play();
-                                        } else {
-                                          video.pause();
-                                        }
-                                      });
-                                    },
-                                    {
-                                      threshold: 0.5, // 50% of the video must be visible for it to play
-                                    }
-                                  );
-                                  observer.observe(video);
-                                });
-                              </script>
-                    </div>
     </div>
     
     
