@@ -5,6 +5,9 @@
     <!-- Title -->
     <title>Random Latent Exploration for Deep Reinforcement Learning</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="rsc/green_dot.png">
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +32,27 @@
         .header-text {
             text-align: center;
         }
+        .parent-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border: 5px solid black; */
+            /* height: 100vh; */
+        }
+        .video-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            gap: 1px;
+        }
+        .video-container video {
+            /* width: 33%; */
+            height: auto;
+            margin: 2px auto;
+            border: 2px solid black;
+            /* box-sizing: border-box; */
+        }
     </style>
 
     <!-- Google tag (gtag.js) -->
@@ -45,6 +69,35 @@
 
 
 <body>
+
+    <!-- Video Function -->
+    <script>
+        function setVideoLoop(videoId, startTime, endTime) {
+          const video = document.getElementById(videoId);
+    
+          video.currentTime = startTime;
+          video.play();
+    
+          video.addEventListener('timeupdate', () => {
+            if (video.currentTime >= endTime) {
+              video.currentTime = startTime;
+              video.play();
+            }
+          });
+        }
+    
+        document.addEventListener('DOMContentLoaded', (event) => {
+          setVideoLoop('state space coverage', 74.5, 80); // Set the start and end times for the first video
+          setVideoLoop('action noise', 14, 23);
+          setVideoLoop('parameter noise', 24.5, 33.5);
+          setVideoLoop('exploration bonus', 35, 48);
+          setVideoLoop('formulation', 49, 62.5);
+          setVideoLoop('implementation', 64.5, 72);
+          setVideoLoop('atari results', 82, 91);
+          setVideoLoop('isaacgym results', 92, 100);
+        });
+      </script>
+
     <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> -->
     <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #A31F34;">
         <a class="navbar-brand" href="#">Random Latent Exploration for Deep Reinforcement Learning</a>
@@ -59,6 +112,9 @@
                     <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#Video">Video</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#Abstract">Abstract</a>
                 </li>
                 <li class="nav-item">
@@ -66,6 +122,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#Overview">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Results">Results</a>
                 </li>
             </ul>
         </div>
@@ -84,7 +143,10 @@
                 <a href="https://www.mit.edu/~rakhlin/">Alexander Rakhlin</a>, 
                 <a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a> 
             </h6>
-            <p style="color: green;"><small>International Conference on Machine Learning (ICML), 2024</small></p>
+            <p style="padding : 0; margin : 0; line-height : 30px;"><small>Improbable AI Lab</small></p>
+            <p style="padding : 0; margin : 0; line-height : 30px;"><small> Computer Science and Artificial Intelligence Laboratory (CSAIL)</small></p>
+            <p style="padding : 0; margin : 0; line-height : 30px;"><small> Massachusetts Institute of Technology (MIT)</small></p>
+            <p style="color: green; padding : 0; margin : 0; line-height : 30px;"><small>International Conference on Machine Learning (ICML), 2024</small></p>
             <div class="logo-container">
                 <div>
                 <object hspace="50">
@@ -114,7 +176,9 @@
     </center><br>
 
     <!-- straight -->
-    <!-- <div class="container" style="padding-top: 10px; font-size: 20px">
+    <div class="container" style="padding-top: 10px; font-size: 20px">
+        <h2 id="Video" style="padding-top: 70px; margin-top: -80px; ">Video</h2>
+        <hr>
         <div align="center">
             <div class="center" style="position: relative;">
                 <video
@@ -123,16 +187,17 @@
                   id="video"
                   controls
                 >
-                  <source src="rsc/ASMP_Spotlight_Narrated.mp4" type="video/mp4" />
-                  <track src="rsc/ASMP_Spotlight_Narrated.vtt" kind="subtitles" srclang="en" label="English" default>
+                  <!-- <source src="rsc/ASMP_Spotlight_Narrated.mp4" type="video/mp4" /> -->
+                  <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4" />
+                  <!-- <track src="rsc/ASMP_Spotlight_Narrated.vtt" kind="subtitles" srclang="en" label="English" default> -->
                 </video>
-                <div
+                <!-- <div
                   id="playButton"
                   style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer; background-color: #000000; border: none; color: #ffffff; padding: 10px 20px; font-size: 1.5em;"
                   onclick="playVideo()"
                 >
                   ▶
-                </div>
+                </div> -->
               </div>
 
               <script>
@@ -144,7 +209,7 @@
                 });
               </script>
               
-              <!-- <script>
+              <script>
                 function playVideo() {
                   const video = document.getElementById('video');
                   const playButton = document.getElementById('playButton');
@@ -158,14 +223,14 @@
                   const playButton = document.getElementById('playButton');
                   playButton.style.display = 'block';
                 });
-              </script> -->
+              </script>
             </div>
         </div>
     </div><br>
 
     <!-- Abstract -->
     <div class="container">
-        <h4 id="Abstract" style="padding-top: 70px; margin-top: -80px; ">Abstract</h4>
+        <h2 id="Abstract" style="padding-top: 70px; margin-top: -80px; ">Abstract</h2>
         <hr>
         <div style="text-align: justify">
         The ability to efficiently explore high-dimensional state spaces is essential for the practical success of
@@ -182,7 +247,7 @@
 
     <!-- Paper -->
     <div class="container">
-        <h4 id="Paper" style="padding-top: 70px; margin-top: -80px;">Paper</h4>
+        <h2 id="Paper" style="padding-top: 70px; margin-top: -80px;">Paper</h2>
         <hr>
 
         <div class="row">
@@ -246,10 +311,87 @@
     </div><br><br> -->
 
     <div class="container">
-        
-        <h2 id="Overview" style="padding-top: 70px; margin-top: -80px;">Overview</h4>
+        <h2 id="Overview" style="padding-top: 70px; margin-top: -80px;">Overview</h2>
+        <hr>
+        <!-- TODO: Add images for each section -->
+        <!-- TODO: Have better names for each section -->
+            <h4 id="Motivation" style="padding-top: 70px; margin-top: -80px;">
+            Generating diverse trajectories is hard with common exploration methods
+            </h4>
+            <!-- Put the three slides: (1) Action noise, (2) Parameter noise, (3) Exploration bonus - they explain why they are bad -->
+            
+            <div class="parent-container">
+            <div class="video-container" style="display: flex;">
+                <video id="action noise" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
+                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                <video id="parameter noise" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
+                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                <video id="exploration bonus" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
+                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+            </div>
+            </div>
+            <br>
+
+            <h4 id="Method" style="padding-top: 70px; margin-top: -80px;">
+            RLE formulation and implementation
+            </h4>
+            <!-- Put the two-slide clip (side by side, one slide per side) detailing RLE theoretical and RLE implementation -->
+
+            <div class="parent-container">
+            <div class="video-container" style="display: flex;">
+                <video id="formulation" muted playsinline width="49%" style="max-width: 640px; display: block; height: auto;">
+                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                <video id="implementation" muted playsinline width="49%" style="max-width: 640px; display: block; height: auto;">
+                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                    </video>
+            </div>
+            </div>
+            <br>
+
+        <h2 id="Results" style="padding-top: 70px; margin-top: -80px;">Results</h2>
+        <hr>
+
+            <h4 id="Results" style="padding-top: 70px; margin-top: -80px;">
+            Improved state space coverage with RLE
+            </h4>
+
+            <div class="parent-container">
+            <div class="video-container" style="display: flex;">
+            <video id="state space coverage" muted playsinline width="100%" style="max-width: 640px; display: block;">
+                <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            </div>
+            <br>
+
+            <h4 id="Results" style="padding-top: 70px; margin-top: -80px;">
+            RLE improves in Atari (57 Tasks) and IsaacGym (9 Tasks)
+            </h4>
+
+            <div class="parent-container">
+            <div class="video-container" style="display: flex;">
+            <video id="atari results" muted playsinline width="49%" style="max-width: 640px; display: block;">
+                <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            <video id="isaacgym results" muted playsinline width="49%" style="max-width: 640px; display: block;">
+                <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video>
+            </div>
+            </div>
+
         <br>
-        <br>
+
     <br>      
     </div>
     
@@ -262,18 +404,30 @@
 
     <div class="container">
         <h4 id="author-contributions" style="padding-top: 30px; margin-top: -40px;">Author Contributions</h4>
-        <!-- <p><a href="https://srinathm1359.github.io/">Srinath Mahankali</a>: </p>
-        <p><a href="https://williamd4112.github.io/">Zhang-Wei Hong</a>: </p>
-        <p><a href="https://ayush.sekhari.com/">Ayush Sekhari</a>: </p>
-        <p><a href="https://www.mit.edu/~rakhlin/">Alexander Rakhlin</a>: </p>
-        <p><a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a>: </p> -->
         <!-- Do the same as above with decreased spacing vertically -->
         <!-- Do this by decreasing margin or padding -->
-        <p style="margin-bottom: 0px;"><a href="https://srinathm1359.github.io/">Srinath Mahankali</a>: </p>
-        <p style="margin-bottom: 0px;"><a href="https://williamd4112.github.io/">Zhang-Wei Hong</a>: </p>
-        <p style="margin-bottom: 0px;"><a href="https://ayush.sekhari.com/">Ayush Sekhari</a>: </p>
-        <p style="margin-bottom: 0px;"><a href="https://www.mit.edu/~rakhlin/">Alexander Rakhlin</a>: </p>
-        <p style="margin-bottom: 0px;"><a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a>: </p>
+        <p style="margin-bottom: 0px;">
+            <a href="https://srinathm1359.github.io/">Srinath Mahankali</a> ran initial small-scale experiments to investigate 
+            the benefit of random rewards for exploration, and formulated the current version of RLE based on this.
+            He implemented RLE and baselines in the Atari and IsaacGym environments, ran experiments at scale to evaluate
+            performance, and helped with paper writing.
+        </p>
+        <p style="margin-bottom: 0px;">
+            <a href="https://williamd4112.github.io/">Zhang-Wei Hong</a> conceived of the possibility of using random rewards
+            for exploration. He was involved in research discussions, helped run experiments at scale, played the primary 
+            role in paper writing, and advised Srinath.
+        </p>
+        <p style="margin-bottom: 0px;">
+            <a href="https://ayush.sekhari.com/">Ayush Sekhari</a> was involved in research discussions and helped set the 
+            overall formulation of RLE. He played a significant role in paper writing, and advised Srinath.
+        </p>
+        <p style="margin-bottom: 0px;">
+            <a href="https://www.mit.edu/~rakhlin/">Alexander Rakhlin</a> was involved in research discussions and advising.
+        </p>
+        <p style="margin-bottom: 0px;">
+            <a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a>was involved in paper writing, research 
+            discussions, overall advising, and positioning of the work. 
+        </p>
 
         <!-- <h4 id="sim-training" style="padding-top: 30px; margin-top: -40px;">Task Specification</h4> -->
         <hr>
