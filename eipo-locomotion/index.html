@@ -88,7 +88,7 @@
   
       document.addEventListener('DOMContentLoaded', (event) => {
         setVideoLoop('state space coverage', 74.5, 80); // Set the start and end times for the first video
-        setVideoLoop('action noise', 14, 23);
+        setVideoLoop('action noise', 20, 21);
         setVideoLoop('parameter noise', 24.5, 33.5);
         setVideoLoop('exploration bonus', 35, 48);
         setVideoLoop('formulation', 49, 62.5);
@@ -112,6 +112,9 @@
                     <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#Video">Video</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#Abstract">Abstract</a>
                 </li>
                 <li class="nav-item">
@@ -124,7 +127,7 @@
         </div>
     </nav>
     <br>
-    <div class="container" style="padding-top: 80px; font-size: 20px">
+    <div class="container" id="Title" style="padding-top: 80px; font-size: 20px">
         
         <div align="center">
             <h2 class="text-center" align="center">
@@ -140,7 +143,7 @@
             <p style="padding : 0; margin : 0; line-height : 30px;"><small>Improbable AI Lab</small></p>
             <p style="padding : 0; margin : 0; line-height : 30px;"><small> Computer Science and Artificial Intelligence Laboratory (CSAIL)</small></p>
             <p style="padding : 0; margin : 0; line-height : 30px;"><small> Massachusetts Institute of Technology (MIT)</small></p>
-            <p style="color: green;"><small>International Conference on
+            <p style="color: green; padding : 0; margin : 0; line-height : 30px;"><small>International Conference on
                 Robotics and Automation (ICRA), 2024</small></p>
             <div class="logo-container">
                 <div>
@@ -221,13 +224,13 @@
               </script>
             </div>
         </div>
-    <br>
+    </div><br>
 
     <!-- Abstract -->
-    <div class="container">
-        <h4 id="Abstract" style="padding-top: 70px; margin-top: -80px; ">Abstract</h4>
+    <div class="container" id="Abstract">
+        <h2 id="Abstract" style="padding-top: 70px; margin-top: -80px; ">Abstract</h2>
         <hr>
-        <div style="text-align: justify">
+        <div style="text-align: left">
             Reinforcement Learning (RL) has been a powerful tool for training robots to acquire agile locomotion skills. 
             To learn locomotion, it is commonly necessary to introduce additional reward-shaping terms, such as an energy minimization term, to guide an algorithm like Proximal Policy Optimization (PPO) to good performance.
             Prior works rely on hyper-parameter tuning on the weight of the reward shaping terms to obtain satisfactory task performance.
@@ -242,7 +245,7 @@
 
     <!-- Paper -->
     <div class="container">
-        <h4 id="Paper" style="padding-top: 70px; margin-top: -80px;">Paper</h4>
+        <h2 id="Paper" style="padding-top: 70px; margin-top: -80px;">Paper</h2>
         <hr>
 
         <div class="row">
@@ -293,216 +296,27 @@
     <div class="container">
         
         <h2 id="Overview" style="padding-top: 70px; margin-top: -80px;">Overview</h4>
-        <br>
-        <br>
-        <h4 id="Omni" style="padding-top: 70px; margin-top: -80px;">Omni-directional Policy with EIPO and Curriculum Learning</h4>
-            <hr>
-        <br>
-        <div class="center" style="display: flex; justify-content: center; gap: 5px;">
-            <div>
-              <div class="center" style="display: flex; justify-content: center; gap: 5px;">
-                  <video
-                    width="60%"
-                    style="max-width: 640px;"
-                    controls="true"
-                    autoplay
-                    muted
-                    loop
-                    onplaying="this.controls=false"
-                    id="video"
-                  >
-                    <source src="rsc/running1.mp4" type="video/mp4" />
-                  </video>
-                </div>
-              <script>
-                  document.addEventListener('DOMContentLoaded', function () {
-                    const video = document.getElementById('video');
-                    const observer = new IntersectionObserver(
-                      (entries) => {
-                        entries.forEach((entry) => {
-                          if (entry.isIntersecting) {
-                            video.play();
-                          } else {
-                            video.pause();
-                          }
-                        });
-                      },
-                      {
-                        threshold: 0.5, // 50% of the video must be visible for it to play
-                      }
-                    );
-                    observer.observe(video);
-                  });
-                </script>
-              <p style="text-align: center; margin-top: 5px;">Running at high speeds (1x speed)</p>
-            </div>
-            <div>
-                <div class="center" style="display: flex; justify-content: center; gap: 5px;">
-                    <video
-                      width="60%"
-                      style="max-width: 640px;"
-                      controls="true"
-                      autoplay
-                      muted
-                      loop
-                      onplaying="this.controls=false"
-                      id="video"
-                    >
-                      <source src="rsc/snow_climb.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                      const video = document.getElementById('video');
-                      const observer = new IntersectionObserver(
-                        (entries) => {
-                          entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                              video.play();
-                            } else {
-                              video.pause();
-                            }
-                          });
-                        },
-                        {
-                          threshold: 0.5, // 50% of the video must be visible for it to play
-                        }
-                      );
-                      observer.observe(video);
-                    });
-                  </script>
-                <p style="text-align: center; margin-top: 5px;">Climbing a snowy hill (1x speed)</p>
-              </div>
-              <div>
-                <div class="center" style="display: flex; justify-content: center; gap: 5px;">
-                    <video
-                      width="60%"
-                      style="max-width: 640px;"
-                      controls="true"
-                      autoplay
-                      muted
-                      loop
-                      onplaying="this.controls=false"
-                      id="video"
-                    >
-                      <source src="rsc/eipo_spinning_front_view_11_16.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                      const video = document.getElementById('video');
-                      const observer = new IntersectionObserver(
-                        (entries) => {
-                          entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                              video.play();
-                            } else {
-                              video.pause();
-                            }
-                          });
-                        },
-                        {
-                          threshold: 0.5, // 50% of the video must be visible for it to play
-                        }
-                      );
-                      observer.observe(video);
-                    });
-                  </script>
-                <p style="text-align: center; margin-top: 5px;">Spinning at high speeds (1x speed)</p>
-              </div>
-        </div>
-    <br>
-    <h4 id="Velocity Maximization" style="padding-top: 70px; margin-top: -80px;">Velocity Maximization Task</h4>
-    <hr>
-        <div align="center">
-            <!-- <h5 id="sys-arch" style="padding-top: 30px; margin-top: -40px;"> -->
-              <!-- <b>The key is to optimize the robot's gait to accurately sense the terrain, resulting in emergent behavior like rubbing the foot to sense friction.</b> -->
-            <!-- </h5> -->
-            <br>
-            <br>
-            <div class="center" style="display: flex; justify-content: center; gap: 5px;">
-              <div>
-                <div class="center">
-                    <video
-                      width="70%"
-                      style="max-width: 640px;"
-                      controls="true"
-                      autoplay
-                      muted
-                      loop
-                      onplaying="this.controls=false"
-                      id="video"
-                    >
-                      <source src="rsc/max_velocity_1.mov" type="video/mp4" />
-                    </video>
-                    <p style="text-align: center; margin-top: 5px;">PPO, PPO with energy, and EIPO in simulation.</p>
-                  </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                      const video = document.getElementById('video');
-                      const observer = new IntersectionObserver(
-                        (entries) => {
-                          entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                              video.play();
-                            } else {
-                              video.pause();
-                            }
-                          });
-                        },
-                        {
-                          threshold: 0.5, // 50% of the video must be visible for it to play
-                        }
-                      );
-                      observer.observe(video);
-                    });
-                  </script>
-                <!-- <p style="text-align: center; margin-top: 5px;">Emergent foot swiping</p> -->
-              </div>
-              <div>
-                <div class="center">
-                    <video
-                      width="70%"
-                      style="max-width: 640px;"
-                      controls="true"
-                      autoplay
-                      muted
-                      loop
-                      onplaying="this.controls=false"
-                      id="video"
-                    >
-                      <source src="rsc/max_velocity_2.mov" type="video/mp4" />
-                    </video>
-                    <p style="text-align: center; margin-top: 5px;">Deploying PPO and EIPO in the real world.</p>
-                  </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                      const video = document.getElementById('video');
-                      const observer = new IntersectionObserver(
-                        (entries) => {
-                          entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                              video.play();
-                            } else {
-                              video.pause();
-                            }
-                          });
-                        },
-                        {
-                          threshold: 0.5, // 50% of the video must be visible for it to play
-                        }
-                      );
-                      observer.observe(video);
-                    });
-                  </script>
-                <!-- <p style="text-align: center; margin-top: 5px;">Emergent foot rubbing</p> -->
-              </div>
-              <!-- <div>
-                <img src="rsc/roughness_sensing_gait.gif" style="width: 70%;" alt="Roughness Sensing Gait" />
-                <p style="text-align: center; margin-top: 5px;"><b>Roughness sensing gait</b></p>
-              </div> -->
-            </div>
-          </div>          
+			<hr>
+			<h4 id="Motivation" style="padding-top: 70px; margin-top: -80px;">
+				Tuning rewards is tedious but essential in sim-to-real RL
+			</h4>
+				
+			<div class="parent-container" id="Motivation Videos">
+			<div class="video-container" style="display: flex;">
+				<video id="action noise" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
+					<source src="rsc/EIPO ICRA Talk Video.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+					</video>
+				<video id="parameter noise" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
+					<source src="rsc/EIPO ICRA Talk Video.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+					</video>
+				<video id="exploration bonus" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
+					<source src="rsc/EIPO ICRA Talk Video.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+			</div>
+			</div>
+			<br>     
     </div>
     
     
