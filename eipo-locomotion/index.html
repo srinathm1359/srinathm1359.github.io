@@ -22,36 +22,36 @@
 
     <style>
       	.header-container {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          font-size: 20px;
-          padding-top: 0px;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 20px;
+			padding-top: 0px;
     	}
       	.header-text {
-          text-align: center;
+          	text-align: center;
       	}
       	.parent-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          /* border: 5px solid black; */
-          /* height: 100vh; */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			/* border: 5px solid black; */
+			/* height: 100vh; */
       	}
       	.video-container {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          width: 100%;
-          gap: 1px;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			width: 100%;
+			gap: 1px;
       	}
       	.video-container video {
-          /* width: 33%; */
-          height: auto;
-          margin: 2px auto;
-          border: 2px solid black;
-          /* box-sizing: border-box; */
+			/* width: 33%; */
+			height: auto;
+			margin: 2px auto;
+			border: 2px solid black;
+			/* box-sizing: border-box; */
       	}
 	</style>
 
@@ -69,34 +69,6 @@
 
 
 <body>
-
-    <!-- Video Function -->
-    <script>
-      function setVideoLoop(videoId, startTime, endTime) {
-        const video = document.getElementById(videoId);
-  
-        video.currentTime = startTime;
-        video.play();
-  
-        video.addEventListener('timeupdate', () => {
-          if (video.currentTime >= endTime) {
-            video.currentTime = startTime;
-            video.play();
-          }
-        });
-      }
-  
-      document.addEventListener('DOMContentLoaded', (event) => {
-        setVideoLoop('state space coverage', 74.5, 80); // Set the start and end times for the first video
-        setVideoLoop('action noise', 20, 21);
-        setVideoLoop('parameter noise', 24.5, 33.5);
-        setVideoLoop('exploration bonus', 35, 48);
-        setVideoLoop('formulation', 49, 62.5);
-        setVideoLoop('implementation', 64.5, 72);
-        setVideoLoop('atari results', 82, 91);
-        setVideoLoop('isaacgym results', 92, 100);
-      });
-    </script>
 
     <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> -->
     <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #A31F34;">
@@ -122,6 +94,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#Overview">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Results">Results</a>
                 </li>
             </ul>
         </div>
@@ -303,20 +278,30 @@
 				
 			<div class="parent-container" id="Motivation Videos">
 			<div class="video-container" style="display: flex;">
-				<video id="action noise" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
-					<source src="rsc/EIPO ICRA Talk Video.mp4" type="video/mp4">
+				<video autoplay loop muted playsinline width="49%" style="max-width: 640px; display: block; height: auto;">
+					<source src="rsc/ICRA EIPO Talk - Motivation 2.m4v" type="video/mp4">
 					Your browser does not support the video tag.
 					</video>
-				<video id="parameter noise" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
-					<source src="rsc/EIPO ICRA Talk Video.mp4" type="video/mp4">
+				<video autoplay loop muted playsinline width="49%" style="max-width: 640px; display: block; height: auto;">
+					<source src="rsc/ICRA EIPO Talk - Motivation 1.m4v" type="video/mp4">
 					Your browser does not support the video tag.
 					</video>
-				<video id="exploration bonus" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
-					<source src="rsc/EIPO ICRA Talk Video.mp4" type="video/mp4">
-					Your browser does not support the video tag.
 			</div>
 			</div>
-			<br>     
+			<br>
+
+			<h4 id="Method" style="padding-top: 70px; margin-top: -80px;">
+				Automatically tuning the auxiliary reward coefficient with EIPO
+			</h4>
+			<br>
+
+		<h2 id="Results" style="padding-top: 70px; margin-top: -80px;">Results</h4>
+		<hr>
+			<h4 id="Simulation Results" style="padding-top: 70px; margin-top: -80px;"> EIPO consistently outperforms PPO in simulation</h4>
+			<br>
+
+			<h4 id="Real World Videos" style="padding-top: 70px; margin-top: -80px;"> Omnidirectional velocity tracking with EIPO and extremely simple auxiliary reward</h4>
+			<br>
     </div>
     
     
