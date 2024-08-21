@@ -438,34 +438,31 @@
                         <p>Perturb the reward randomly and condition the policy on the perturbation</p>
                         <img src="rsc/expl_strategies_imgs/random_latent_exploration.png" 
                         alt="Random Latent Exploration leads to diverse trajectories in one iteration."
-                        style="width: 47.8%;">
+                        style="width: 46.5%;">
                         <!-- <p class="highlight">Visit different regions of the environment with the same policy!</p> -->
                         <p class="highlight">Allows the same policy to visit different regions of the environment!</p>
                     </div>
                     <div class="strategy-box" style="width: 50%; text-align: center; height: auto;">
-                        <h4>RLE is Simple to Implement</h4>
+                        <h2>RLE is Simple to Implement</h2>
 
-                        <br>
-                        <br>
-
-                        <p>Initialize feature network \(\phi\) and sample a random latent vector \(\boldsymbol{z}\)</p>
+                        <p style="line-height: 3em;">
+                            Initialize feature network \(\phi\) and sample a random latent vector \(\boldsymbol{z}\)
+                        </p>
                         
                         <br>
-                        <br>
 
-                        <p>Perturb the reward function using \(\boldsymbol{z}\): 
+                        <p style="line-height: 3em;">
+                            Perturb the reward function using \(\boldsymbol{z}\): 
                             \[r_{\mathrm{new}} = r_{\mathrm{task}} + \phi(s) \cdot \boldsymbol{z}\]
                         </p>
 
-                        <br>
-                        <br>
-
-                        <p>Resample \(\boldsymbol{z}\) on episode termination or after a fixed number of time steps</p>
+                        <p style="line-height: 6em;">
+                            Resample \(\boldsymbol{z}\) on episode termination or after a fixed number of time steps
+                        </p>
                         
-                        <br>
-                        <br>
-                        
-                        <p>Train policy \(\pi(s,\boldsymbol{z})\) using \(r_{\mathrm{new}}\)</p>
+                        <p style="line-height: 3em;">
+                            Train policy \(\pi(s,\boldsymbol{z})\) using \(r_{\mathrm{new}}\)
+                        </p>
                     </div>
                 </div>
             </div>
