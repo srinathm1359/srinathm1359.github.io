@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+
     <style>
         body, html {
             padding: 0;
@@ -67,7 +71,7 @@
         }
 
         /* Container for the three boxes */
-        .exploration-section {
+        .card-container {
             display: flex;
             justify-content: space-between; /* Even spacing between boxes */
             align-items: flex-start;
@@ -82,7 +86,7 @@
             padding: 10px;
             margin: 5px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.259);
             width: 300px;
             text-align: center;
             transition: transform 0.3s ease; /* Animation on hover */
@@ -105,14 +109,15 @@
         /* Description and text under the image */
         .strategy-box p {
             font-size: 1em;
-            color: #666;
+            /* color: #666; */
+            color: #000000;
             line-height: 1.4em;
             margin-bottom: 10px;
         }
         /* Emphasizing text */
         .strategy-box .highlight {
             color: red;
-            font-weight: bold;
+            /* font-weight: bold; */
         }
 
         .video-container video {
@@ -380,21 +385,6 @@
 
     <br><br>
 
-    <!-- <div class="container">
-        
-        <h4 id="highlights" style="padding-top: 30px; margin-top: -40px;">Real World Highlights</h4>
-        <hr>
-        
-            <div align="center">
-                <br>
-                    <div class="center">
-                        <video width="100%" padding-bottom="56.25%" style="max-width: 640px;" controls>
-                            <source src="rsc/highlights.m4v" type="video/mp4">
-                      </video>
-                    </div>
-            </div>
-    </div><br><br> -->
-
     <div class="container">
         <h2 id="Overview" style="padding-top: 70px; margin-top: -80px;">Overview</h2>
         <hr>
@@ -406,27 +396,28 @@
             <br>
             <!-- TODO: Replace these videos with 3 divs side by side with the same information -->
             <div class="parent-container">
-                <div class="exploration-section" style="display: flex;">
+                <div class="card-container" style="display: flex;">
                     <div class="strategy-box" style="width: 33%; text-align: center;">
                         <h4>Action Noise</h4>
                         <p>Perturb the policy's actions via random sampling</p>
-                        <p>e.g., &#x3B5;-greedy or entropy regularization</p>
+                        <p>e.g., \(\varepsilon\)-greedy or entropy regularization</p>
                         <img src="rsc/expl_strategies_imgs/action_noise.png" alt="Action noise leads to similar trajectories in one training iteration.">
-                        <p style="color: red;">The generated trajectories explore similar regions!</p>
+                        <!-- <p style="color: red;">The generated trajectories explore similar regions!</p> -->
+                        <p class="highlight">The generated trajectories explore similar regions!</p>
                     </div>
                     <div class="strategy-box" style="width: 33%; text-align: center;">
                         <h4>Parameter Noise</h4>
                         <p>Perturb the policy's parameters randomly instead</p>
                         <p>Adds some diversity to generated trajectories!</p>
                         <img src="rsc/expl_strategies_imgs/parameter_noise.png" alt="Parameter noise leads to slightly more diverse trajectories, but still not enough.">
-                        <p style="color: red;">Does not yield enough diversity empirically!</p>
+                        <p class="highlight">Does not yield enough diversity empirically!</p>
                     </div>
                     <div class="strategy-box" style="width: 33%; text-align: center;">
                         <h4>Exploration Bonus</h4>
                         <p>Relies on action noise for trajectory diversity</p>
                         <p>Rewards policy for visiting novel states</p>
                         <img src="rsc/expl_strategies_imgs/exploration_bonus.png" alt="Exploration bonus leads to diverse experience, but only over multiple training iterations.">
-                        <p style="color: red;">Needs multiple iterations to yield diverse trajectories!</p>
+                        <p class="highlight">Needs multiple iterations to yield diverse trajectories!</p>
                     </div>
                 </div>
             </div>
@@ -436,19 +427,47 @@
             <h3 id="Method" style="padding-top: 70px; margin-top: -80px;">
             RLE formulation and implementation
             </h3>
-            <!-- Put the two-slide clip (side by side, one slide per side) detailing RLE theoretical and RLE implementation -->
 
+            <!-- TODO: Replace the two videos with a single card indicating the formulation and implementation -->
             <div class="parent-container">
-            <div class="video-container" style="display: flex;">
-                <video id="formulation" muted playsinline width="49%" style="max-width: 640px; display: block; height: auto;">
-                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
-                <video id="implementation" muted playsinline width="49%" style="max-width: 640px; display: block; height: auto;">
-                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                    </video>
-            </div>
+                <div class="card-container" style="display: flex;">
+                    <div class="strategy-box" style="width: 50%; text-align: center;">
+                        <h4>Our Method: Random Latent Exploration (RLE)</h4>
+                        <!-- <p>Perturb the reward function randomly</p> -->
+                        <!-- <p>Condition the policy on the perturbation</p> -->
+                        <p>Perturb the reward randomly and condition the policy on the perturbation</p>
+                        <img src="rsc/expl_strategies_imgs/random_latent_exploration.png" 
+                        alt="Random Latent Exploration leads to diverse trajectories in one iteration."
+                        style="width: 47.8%;">
+                        <!-- <p class="highlight">Visit different regions of the environment with the same policy!</p> -->
+                        <p class="highlight">Allows the same policy to visit different regions of the environment!</p>
+                    </div>
+                    <div class="strategy-box" style="width: 50%; text-align: center; height: auto;">
+                        <h4>RLE is Simple to Implement</h4>
+
+                        <br>
+                        <br>
+
+                        <p>Initialize feature network \(\phi\) and sample a random latent vector \(\boldsymbol{z}\)</p>
+                        
+                        <br>
+                        <br>
+
+                        <p>Perturb the reward function using \(\boldsymbol{z}\): 
+                            \[r_{\mathrm{new}} = r_{\mathrm{task}} + \phi(s) \cdot \boldsymbol{z}\]
+                        </p>
+
+                        <br>
+                        <br>
+
+                        <p>Resample \(\boldsymbol{z}\) on episode termination or after a fixed number of time steps</p>
+                        
+                        <br>
+                        <br>
+                        
+                        <p>Train policy \(\pi(s,\boldsymbol{z})\) using \(r_{\mathrm{new}}\)</p>
+                    </div>
+                </div>
             </div>
             <br>
 
