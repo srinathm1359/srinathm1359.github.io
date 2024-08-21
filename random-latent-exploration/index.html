@@ -28,7 +28,7 @@
             height: 100%;
         }
         .container {
-            width: 85%;
+            width: 90%;
             max-width: 100%;
             padding: 0;
             margin: 0 auto;
@@ -65,6 +65,56 @@
             width: 100%;
             gap: 1px;
         }
+
+        /* Container for the three boxes */
+        .exploration-section {
+            display: flex;
+            justify-content: space-between; /* Even spacing between boxes */
+            align-items: flex-start;
+            flex-wrap: nowrap; /* Ensures all boxes stay on one row */
+            padding: 10px;
+            background-color: #f5f5f5;
+            box-sizing: border-box;
+        }
+        /* Styling each exploration strategy box */
+        .strategy-box {
+            background-color: white;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease; /* Animation on hover */
+        }
+        .strategy-box:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        /* Title of each strategy */
+        .strategy-box h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        /* Image styling inside each strategy box */
+        .strategy-box img {
+            width: 75%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        /* Description and text under the image */
+        .strategy-box p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.4em;
+            margin-bottom: 10px;
+        }
+        /* Emphasizing text */
+        .strategy-box .highlight {
+            color: red;
+            font-weight: bold;
+        }
+
         .video-container video {
             /* width: 33%; */
             height: auto;
@@ -113,9 +163,9 @@
         }
     
         document.addEventListener('DOMContentLoaded', (event) => {
-            setVideoLoop('action noise', 14, 14, 23);
-            setVideoLoop('parameter noise', 24.5, 24.5, 33.5);
-            setVideoLoop('exploration bonus', 35, 35, 48);
+            // setVideoLoop('action noise', 14, 14, 23);
+            // setVideoLoop('parameter noise', 24.5, 24.5, 33.5);
+            // setVideoLoop('exploration bonus', 35, 35, 48);
             setVideoLoop('formulation', 49, 49, 62.5);
             // setVideoLoop('implementation', 64.5, 72);
             setVideoLoop('implementation', 71, 71, 72);
@@ -348,33 +398,44 @@
     <div class="container">
         <h2 id="Overview" style="padding-top: 70px; margin-top: -80px;">Overview</h2>
         <hr>
-        <!-- TODO: Add images for each section -->
-        <!-- TODO: Have better names for each section -->
-            <h4 id="Motivation" style="padding-top: 70px; margin-top: -80px;">
+            <h3 id="Motivation" style="padding-top: 70px; margin-top: -80px;">
             Generating diverse trajectories is hard with common exploration strategies
-            </h4>
+            </h3>
             <!-- Put the three slides: (1) Action noise, (2) Parameter noise, (3) Exploration bonus - they explain why they are bad -->
             
+            <br>
+            <!-- TODO: Replace these videos with 3 divs side by side with the same information -->
             <div class="parent-container">
-            <div class="video-container" style="display: flex;">
-                <video id="action noise" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
-                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
-                <video id="parameter noise" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
-                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
-                <video id="exploration bonus" muted playsinline width="33%" style="max-width: 640px; display: block; height: auto;">
-                    <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                <div class="exploration-section" style="display: flex;">
+                    <div class="strategy-box" style="width: 33%; text-align: center;">
+                        <h4>Action Noise</h4>
+                        <p>Perturb the policy's actions via random sampling</p>
+                        <p>e.g., &#x3B5;-greedy or entropy regularization</p>
+                        <img src="rsc/expl_strategies_imgs/action_noise.png" alt="Action noise leads to similar trajectories in one training iteration.">
+                        <p style="color: red;">The generated trajectories explore similar regions!</p>
+                    </div>
+                    <div class="strategy-box" style="width: 33%; text-align: center;">
+                        <h4>Parameter Noise</h4>
+                        <p>Perturb the policy's parameters randomly instead</p>
+                        <p>Adds some diversity to generated trajectories!</p>
+                        <img src="rsc/expl_strategies_imgs/parameter_noise.png" alt="Parameter noise leads to slightly more diverse trajectories, but still not enough.">
+                        <p style="color: red;">Does not yield enough diversity empirically!</p>
+                    </div>
+                    <div class="strategy-box" style="width: 33%; text-align: center;">
+                        <h4>Exploration Bonus</h4>
+                        <p>Relies on action noise for trajectory diversity</p>
+                        <p>Rewards policy for visiting novel states</p>
+                        <img src="rsc/expl_strategies_imgs/exploration_bonus.png" alt="Exploration bonus leads to diverse experience, but only over multiple training iterations.">
+                        <p style="color: red;">Needs multiple iterations to yield diverse trajectories!</p>
+                    </div>
+                </div>
             </div>
-            </div>
+
             <br>
 
-            <h4 id="Method" style="padding-top: 70px; margin-top: -80px;">
+            <h3 id="Method" style="padding-top: 70px; margin-top: -80px;">
             RLE formulation and implementation
-            </h4>
+            </h3>
             <!-- Put the two-slide clip (side by side, one slide per side) detailing RLE theoretical and RLE implementation -->
 
             <div class="parent-container">
@@ -394,9 +455,9 @@
         <h2 id="Results" style="padding-top: 70px; margin-top: -80px;">Results</h2>
         <hr>
 
-            <h4 id="Results" style="padding-top: 70px; margin-top: -80px;">
+            <h3 id="Results" style="padding-top: 70px; margin-top: -80px;">
             Improved state space coverage with RLE
-            </h4>
+            </h3>
 
             <div class="parent-container">
             <div class="video-container" style="display: flex;">
@@ -408,9 +469,9 @@
             </div>
             <br>
 
-            <h4 id="Results" style="padding-top: 70px; margin-top: -80px;">
+            <h3 id="Results" style="padding-top: 70px; margin-top: -80px;">
             RLE improves in Atari (57 Tasks) and IsaacGym (9 Tasks)
-            </h4>
+            </h3>
 
             <div class="parent-container">
             <div class="video-container" style="display: flex;">
@@ -438,7 +499,7 @@
     
 
     <div class="container" id="Author Contributions">
-        <h2 id="author-contributions" style="padding-top: 30px; margin-top: -40px;">Author Contributions</h4>
+        <h2 id="author-contributions" style="padding-top: 30px; margin-top: -40px;">Author Contributions</h2>
         <hr>
         <!-- Do the same as above with decreased spacing vertically -->
         <!-- Do this by decreasing margin or padding -->
