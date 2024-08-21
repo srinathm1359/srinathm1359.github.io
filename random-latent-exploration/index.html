@@ -96,29 +96,35 @@
 
     <!-- Video Function -->
     <script>
-        function setVideoLoop(videoId, startTime, endTime) {
-          const video = document.getElementById(videoId);
+        function setVideoLoop(videoId, initialStartTime, startTime, endTime) {
+            const video = document.getElementById(videoId);
     
-          video.currentTime = startTime;
-          video.play();
+            // initially set the start time to be the endtime so it loops from the completed slide
+            // video.currentTime = endTime - 0.5;
+            video.currentTime = initialStartTime;
+            video.play();
     
-          video.addEventListener('timeupdate', () => {
-            if (video.currentTime >= endTime) {
-              video.currentTime = startTime;
-              video.play();
-            }
-          });
+            video.addEventListener('timeupdate', () => {
+                if (video.currentTime >= endTime) {
+                    video.currentTime = startTime;
+                    video.play();
+                }
+            });
         }
     
         document.addEventListener('DOMContentLoaded', (event) => {
-          setVideoLoop('state space coverage', 74.5, 80); // Set the start and end times for the first video
-          setVideoLoop('action noise', 14, 23);
-          setVideoLoop('parameter noise', 24.5, 33.5);
-          setVideoLoop('exploration bonus', 35, 48);
-          setVideoLoop('formulation', 49, 62.5);
-          setVideoLoop('implementation', 64.5, 72);
-          setVideoLoop('atari results', 82, 91);
-          setVideoLoop('isaacgym results', 92, 100);
+            setVideoLoop('action noise', 14, 14, 23);
+            setVideoLoop('parameter noise', 24.5, 24.5, 33.5);
+            setVideoLoop('exploration bonus', 35, 35, 48);
+            setVideoLoop('formulation', 49, 49, 62.5);
+            // setVideoLoop('implementation', 64.5, 72);
+            setVideoLoop('implementation', 71, 71, 72);
+            // setVideoLoop('state space coverage', 74.5, 80);
+            setVideoLoop('state space coverage', 77.5, 77.5, 80);
+            // setVideoLoop('atari results', 82, 91);
+            setVideoLoop('atari results', 90, 90, 91); // TODO
+            // setVideoLoop('isaacgym results', 92, 100);
+            setVideoLoop('isaacgym results', 99, 99, 100); // TODO
         });
       </script>
 
