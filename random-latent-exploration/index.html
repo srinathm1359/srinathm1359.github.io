@@ -132,6 +132,29 @@
             /* font-size: 20px; */
             border: 2px solid black;
         }
+        .arrow {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+        .long-arrow {
+            width: 2px;
+            height: 50px; /* Adjust the height to make the arrow longer */
+            background-color: #000;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .long-arrow::before {
+            content: '';
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #000;
+            position: absolute;
+            top: 50px; /* Position the arrowhead at the bottom */
+            left: -8px; /* Center the arrowhead */
+        }
     </style>
 
     <!-- Google tag (gtag.js) -->
@@ -431,39 +454,38 @@
             <!-- TODO: Replace the two videos with a single card indicating the formulation and implementation -->
             <div class="parent-container">
                 <div class="card-container" style="display: flex;">
-                    <div class="strategy-box" style="width: 50%; text-align: center;">
+                    <div class="strategy-box" style="width: 50%; text-align: center; height: 400px;">
                         <h4>Our Method: Random Latent Exploration (RLE)</h4>
                         <!-- <p>Perturb the reward function randomly</p> -->
                         <!-- <p>Condition the policy on the perturbation</p> -->
                         <p>Perturb the reward randomly and condition the policy on the perturbation</p>
                         <img src="rsc/expl_strategies_imgs/random_latent_exploration.png" 
                         alt="Random Latent Exploration leads to diverse trajectories in one iteration."
-                        style="width: 33.1%;">
+                        style="width: 43.5%;">
                         <!-- <p class="highlight">Visit different regions of the environment with the same policy!</p> -->
                         <p class="highlight">Allows the same policy to visit different regions of the environment!</p>
                     </div>
-                    <div class="strategy-box" style="width: 50%; text-align: center; height: auto;">
+                    <div class="strategy-box" style="width: 50%; text-align: center; height: 400px;">
                         <h2>RLE is Simple to Implement</h2>
 
-                        <p style="line-height: 3.6em;">
+                        <p style="line-height: 1.2em; font-size: 20px;">
                             Initialize feature network \(\phi\)
                         </p>
-                        <p style="line-height: 3.6em;">
-                            Sample a random latent vector \(\boldsymbol{z}\)
+                        <div class="arrow">&#x21e9;</div>
+                        <p style="line-height: 1.2em; font-size: 20px;">
+                            Sample a random latent vector \(\textcolor{red}{\boldsymbol{z}}\)
                         </p>
-                        
-
-                        <p style="line-height: 3.6em;">
-                            Perturb the reward function using \(\boldsymbol{z}\): 
-                            \(r_{\mathrm{new}} = r_{\mathrm{task}} + \phi(s) \cdot \boldsymbol{z}\)
+                        <div class="arrow">&#x21e9;</div>
+                        <p style="line-height: 1.2em; font-size: 20px;">
+                            Perturb the reward function using \(\textcolor{red}{\boldsymbol{z}}\): 
+                            \(r_{\mathrm{new}} = r_{\mathrm{task}} + \phi(s) \cdot \textcolor{red}{\boldsymbol{z}}\)
                         </p>
-
+                        <div class="arrow">&#x21e9;</div>
                         <!-- <p style="line-height: 6em;">
                             Resample \(\boldsymbol{z}\) on episode termination or after a fixed number of time steps
                         </p> -->
-                        
-                        <p style="line-height: 3.6em;">
-                            Train policy \(\pi(s,\boldsymbol{z})\) using \(r_{\mathrm{new}}\)
+                        <p style="line-height: 1.2em; font-size: 20px;">
+                            Train policy \(\pi(s,\textcolor{red}{\boldsymbol{z}})\) using \(r_{\mathrm{new}}\)
                         </p>
                     </div>
                 </div>
