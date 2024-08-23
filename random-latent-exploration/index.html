@@ -93,6 +93,7 @@
             box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.259);
             text-align: center;
             transition: transform 0.3s ease; /* Animation on hover */
+            height: auto;
             width: 100%;
             /* max-width: 400px;  do it in rem*/
             /* margin-bottom: 20px; */
@@ -447,7 +448,7 @@
             <!-- TODO: Replace the two videos with a single card indicating the formulation and implementation -->
             <div class="parent-container">
                 <div class="card-container" style="display: flex;">
-                    <div class="strategy-box" style="width: 50%; text-align: center; height: 25em; padding: 0rem;">
+                    <div class="strategy-box" style="width: 50%; text-align: center; height: auto; padding: 0rem;">
                         <img src="rsc/our_method_rle.png" alt="Random Latent Exploration leads to diverse trajectories in one iteration." style="width: 100%;">
                         <!-- <h4>Our Method: Random Latent Exploration (RLE)</h4> -->
                         <!-- <p>Perturb the reward function randomly</p> -->
@@ -459,29 +460,29 @@
                         <!-- <p class="highlight">Visit different regions of the environment with the same policy!</p> -->
                         <!-- <p class="highlight">Allows the same policy to visit different regions of the environment!</p> -->
                     </div>
-                    <div class="strategy-box" style="width: 50%; text-align: center; height: 25em; padding: 0rem;">
+                    <div class="strategy-box" style="width: 50%; text-align: center; height: auto; padding: 0rem;">
                         <img src="rsc/rle_simple_implement.png" alt="Implementation of RLE" style="width: 100%;">
                         <!-- <h2>RLE is Simple to Implement</h2> -->
 
-                        <!-- <p style="line-height: 1.2em; font-size: 1.4em;"> -->
-                            <!-- Initialize feature network \(\phi\) -->
-                        <!-- </p> -->
+                        <!-- <p style="line-height: 1.2em; font-size: 1.4em;">
+                            Initialize feature network \(\phi\)
+                        </p> -->
                         <!-- <div class="arrow">&#x21e9;</div> -->
-                        <!-- <p style="line-height: 1.2em; font-size: 1.4em;"> -->
-                            <!-- Sample a random latent vector \(\textcolor{red}{\boldsymbol{z}}\) -->
-                        <!-- </p> -->
+                        <!-- <p style="line-height: 1.2em; font-size: 1.4em;">
+                            Sample a random latent vector \(\textcolor{red}{\boldsymbol{z}}\)
+                        </p> -->
                         <!-- <div class="arrow">&#x21e9;</div> -->
-                        <!-- <p style="line-height: 1.2em; font-size: 1.4em;"> -->
-                            <!-- Perturb the reward function using \(\textcolor{red}{\boldsymbol{z}}\):  -->
-                            <!-- \(r_{\mathrm{new}} = r_{\mathrm{task}} + \phi(s) \cdot \textcolor{red}{\boldsymbol{z}}\) -->
-                        <!-- </p> -->
+                        <!-- <p style="line-height: 1.2em; font-size: 1.4em;">
+                            Perturb the reward function using \(\textcolor{red}{\boldsymbol{z}}\): 
+                            \(r_{\mathrm{new}} = r_{\mathrm{task}} + \phi(s) \cdot \textcolor{red}{\boldsymbol{z}}\)
+                        </p> -->
                         <!-- <div class="arrow">&#x21e9;</div> -->
                         <!-- <p style="line-height: 6em;">
                             Resample \(\boldsymbol{z}\) on episode termination or after a fixed number of time steps
                         </p> -->
-                        <!-- <p style="line-height: 1.2em; font-size: 1.4em;"> -->
-                            <!-- Train policy \(\pi(s,\textcolor{red}{\boldsymbol{z}})\) using \(r_{\mathrm{new}}\) -->
-                        <!-- </p> -->
+                        <!-- <p style="line-height: 1.2em; font-size: 1.4em;">
+                            Train policy \(\pi(s,\textcolor{red}{\boldsymbol{z}})\) using \(r_{\mathrm{new}}\)
+                        </p> -->
                     </div>
                 </div>
             </div>
