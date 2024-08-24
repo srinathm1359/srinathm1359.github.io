@@ -99,6 +99,7 @@
             /* margin-bottom: 20px; */
             max-width: 50rem;
             margin-bottom: 1rem;
+            /* overflow: scroll; */
         }
 
         .strategy-box:hover {
@@ -116,7 +117,7 @@
         .strategy-box img {
             width: 75%;
             height: auto;
-            margin-bottom: 1rem;
+            /* margin-bottom: 1rem; */
         }
 
         /* Description and text under the image */
@@ -414,27 +415,36 @@
             <!-- TODO: Replace these videos with 3 divs side by side with the same information -->
             <div class="parent-container">
                 <div class="card-container" style="display: flex;">
-                    <div class="strategy-box" style="width: 33%; text-align: center;">
-                        <h4>Action Noise</h4>
-                        <p>Perturb the policy's actions via random sampling</p>
-                        <p>e.g., \(\varepsilon\)-greedy or entropy regularization</p>
-                        <img src="rsc/expl_strategies_imgs/action_noise.png" alt="Action noise leads to similar trajectories in one training iteration.">
+                    <div class="strategy-box" style="width: 33%; text-align: center; padding: 0rem;">
+                        <img src="rsc/expl_strategies_imgs/action_noise_v3.png" 
+                        alt="Action noise leads to similar trajectories in one training iteration."
+                        style="width: 100%;">
+                        <!-- <h4>Action Noise</h4> -->
+                        <!-- <p>Perturb the policy's actions via random sampling</p> -->
+                        <!-- <p>e.g., \(\varepsilon\)-greedy or entropy regularization</p> -->
+                        <!-- <img src="rsc/expl_strategies_imgs/action_noise.png" alt="Action noise leads to similar trajectories in one training iteration."> -->
                         <!-- <p style="color: red;">The generated trajectories explore similar regions!</p> -->
-                        <p class="highlight">The generated trajectories explore similar regions!</p>
+                        <!-- <p class="highlight">The generated trajectories explore similar regions!</p> -->
                     </div>
-                    <div class="strategy-box" style="width: 33%; text-align: center;">
-                        <h4>Parameter Noise</h4>
-                        <p>Perturb the policy's parameters randomly instead</p>
-                        <p>Adds some diversity to generated trajectories!</p>
-                        <img src="rsc/expl_strategies_imgs/parameter_noise.png" alt="Parameter noise leads to slightly more diverse trajectories, but still not enough.">
-                        <p class="highlight">Does not yield enough diversity empirically!</p>
+                    <div class="strategy-box" style="width: 33%; text-align: center; padding: 0rem;">
+                        <img src="rsc/expl_strategies_imgs/parameter_noise_v4.png"
+                        alt="Parameter noise leads to slightly more diverse trajectories, but still not enough."
+                        style="width: 100%;">
+                        <!-- <h4>Parameter Noise</h4> -->
+                        <!-- <p>Perturb the policy's parameters randomly instead</p> -->
+                        <!-- <p>Adds some diversity to generated trajectories!</p> -->
+                        <!-- <img src="rsc/expl_strategies_imgs/parameter_noise.png" alt="Parameter noise leads to slightly more diverse trajectories, but still not enough."> -->
+                        <!-- <p class="highlight">Does not yield enough diversity empirically!</p> -->
                     </div>
-                    <div class="strategy-box" style="width: 33%; text-align: center;">
-                        <h4>Exploration Bonus</h4>
-                        <p>Relies on action noise for trajectory diversity</p>
-                        <p>Rewards policy for visiting novel states</p>
-                        <img src="rsc/expl_strategies_imgs/exploration_bonus.png" alt="Exploration bonus leads to diverse experience, but only over multiple training iterations.">
-                        <p class="highlight">Needs multiple iterations to yield diverse trajectories!</p>
+                    <div class="strategy-box" style="width: 33%; text-align: center; padding: 0rem;">
+                        <img src="rsc/expl_strategies_imgs/exploration_bonus_v3.png"
+                        alt="Exploration bonus leads to diverse experience, but only over multiple training iterations."
+                        style="width: 100%;">
+                        <!-- <h4>Exploration Bonus</h4> -->
+                        <!-- <p>Relies on action noise for trajectory diversity</p> -->
+                        <!-- <p>Rewards policy for visiting novel states</p> -->
+                        <!-- <img src="rsc/expl_strategies_imgs/exploration_bonus.png" alt="Exploration bonus leads to diverse experience, but only over multiple training iterations."> -->
+                        <!-- <p class="highlight">Needs multiple iterations to yield diverse trajectories!</p> -->
                     </div>
                 </div>
             </div>
