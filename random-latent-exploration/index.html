@@ -150,6 +150,22 @@
             font-size: 2em;
             margin: 0.625rem 0;
         }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            width: 100%; /* Ensures the container takes the full width of the parent */
+            height: 100%; /* Ensures the container takes the full height of the parent */
+            padding: 20px; /* Optional padding */
+        }
+
+        .logo-content {
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Align the content vertically */
+            gap: 20px; /* Optional: Adjust the space between the logos */
+        }
     </style>
 
     <!-- Google tag (gtag.js) -->
@@ -251,13 +267,13 @@
             <p style="padding : 0; margin : 0; line-height : 30px;"><small> Massachusetts Institute of Technology (MIT)</small></p>
             <p style="color: green; padding : 0; margin : 0; line-height : 30px;"><small>International Conference on Machine Learning (ICML), 2024</small></p>
             <div class="logo-container">
-                <div>
-                <object hspace="50">
+                <div class="logo-content">
+                <object>
                     <a href="https://www.csail.mit.edu/" target="_blank">
                         <img src="rsc/CSAIL_Primary_Regular_RGB.png" alt="MIT" width="100">
                     </a>
                 </object>
-                <object hspace="50">
+                <object>
                     <a href="https://people.csail.mit.edu/pulkitag/" target="_blank">
                         <img src="rsc/IAI_Logo.jpg" alt="Improbable AI" width="100">
                     </a>
