@@ -141,6 +141,12 @@
             margin: 0.125rem auto;
             border: 0.125rem solid black;
         }
+        /* Video styling */
+        .video-container img {
+            height: auto;
+            margin: 0.125rem auto;
+            border: 0.125rem solid black;
+        }
 
         #main-video {
             border: 0.125rem solid black;
@@ -182,40 +188,6 @@
 
 
 <body>
-
-    <!-- Video Function -->
-    <script>
-        function setVideoLoop(videoId, initialStartTime, startTime, endTime) {
-            const video = document.getElementById(videoId);
-    
-            // initially set the start time to be the endtime so it loops from the completed slide
-            // video.currentTime = endTime - 0.5;
-            video.currentTime = initialStartTime;
-            video.play();
-    
-            video.addEventListener('timeupdate', () => {
-                if (video.currentTime >= endTime) {
-                    video.currentTime = startTime;
-                    video.play();
-                }
-            });
-        }
-    
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // setVideoLoop('action noise', 14, 14, 23);
-            // setVideoLoop('parameter noise', 24.5, 24.5, 33.5);
-            // setVideoLoop('exploration bonus', 35, 35, 48);
-            // setVideoLoop('formulation', 49, 49, 62.5);
-            // setVideoLoop('implementation', 64.5, 72);
-            // setVideoLoop('implementation', 71, 71, 72);
-            // setVideoLoop('state space coverage', 74.5, 80);
-            setVideoLoop('state space coverage', 77.5, 77.5, 80);
-            // setVideoLoop('atari results', 82, 91);
-            setVideoLoop('atari results', 90, 90, 91); // TODO
-            // setVideoLoop('isaacgym results', 92, 100);
-            setVideoLoop('isaacgym results', 99, 99, 100); // TODO
-        });
-      </script>
 
     <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> -->
     <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #A31F34;">
@@ -524,8 +496,8 @@
 
             <div class="parent-container">
             <div class="video-container" style="display: flex;">
-            <video id="state space coverage" muted playsinline width="100%" style="max-width: 640px; display: block;">
-                <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
+            <video muted autoplay loop playsinline width="100%" style="max-width: 640px; display: block;">
+                <source src="rsc/state_coverage.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -538,14 +510,16 @@
 
             <div class="parent-container">
             <div class="video-container" style="display: flex;">
-            <video id="atari results" muted playsinline width="49%" style="max-width: 640px; display: block;">
+            <!-- <video id="atari results" muted playsinline width="49%" style="max-width: 640px; display: block;">
                 <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
-              </video>
-            <video id="isaacgym results" muted playsinline width="49%" style="max-width: 640px; display: block;">
+              </video> -->
+            <img src="rsc/atari_results.png" alt="Atari results" style="width: 49%;">
+            <!-- <video id="isaacgym results" muted playsinline width="49%" style="max-width: 640px; display: block;">
                 <source src="rsc/RLE ICML 2024 Teaserv2 - Havanav2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
-                </video>
+                </video> -->
+            <img src="rsc/isaacgym_results.png" alt="IsaacGym results" style="width: 49%;">
             </div>
             </div>
 
