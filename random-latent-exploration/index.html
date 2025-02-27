@@ -326,19 +326,13 @@
         <h2 id="Abstract" style="padding-top: 70px; margin-top: -80px; ">Abstract</h2>
         <hr>
         <div style="text-align: left">
-            Exploration is a longstanding challenge in reinforcement learning (RL), which is typically addressed through 
-            either noise-based or bonus-based exploration strategies. Noise-based methods are easy to implement but 
-            struggle with deep exploration, while bonus-based methods, though more complex, excel in tasks requiring 
-            deep exploration. Since both approaches perform similarly on average, noise-based exploration is commonly 
-            used in deep RL algorithms due to its simplicity. In this paper, we introduce Random Latent Exploration (RLE),
-            a simple yet effective exploration strategy that outperforms both methods on average. The core idea is 
-            to motivate the agent to explore different parts of the environment by pursuing randomly sampled goals. 
-            The agent's policy is conditioned on randomly sampled vectors that serve as goals, and these vectors 
-            provide varying rewards at each state, encouraging the agent to explore different areas of the environment.
-            RLE is as simple as noise-based methods, as it avoids complex bonus calculations. Our experiments show 
-            that RLE improves performance on average in both discrete (e.g., Atari) and continuous control tasks 
-            (e.g., Isaac Gym), enhancing exploration while remaining a simple and general plug-in for existing RL 
-            algorithms.
+            We introduce Random Latent Exploration (RLE), a simple yet effective exploration strategy in reinforcement learning (RL).
+            On average, RLE outperforms noise-based methods, which perturb the agent's actions, and bonus-based exploration, which rewards 
+            the agent for attempting novel behaviors. The core idea of RLE is to encourage the agent to explore different parts of the 
+            environment by pursuing randomly sampled goals in a latent space. RLE is as simple as noise-based methods, as it avoids 
+            complex bonus calculations but retains the deep exploration benefits of bonus-based methods. Our experiments show that RLE 
+            improves performance on average in both discrete (e.g., Atari) and continuous control tasks (e.g., Isaac Gym), enhancing 
+            exploration while remaining a simple and general plug-in for existing RL algorithms.
         </div>
     </div><br><br>
 
